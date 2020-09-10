@@ -80,3 +80,21 @@ docker-compose down
 docker-compose down
 docker volume rm pern-graphql-stack_pgdata
 ```
+
+
+## Knex
+We are using [knex.js](http://knexjs.org) to interface with the DB.  It provides an API for building schemas and queries 
+independent of DB client.
+
+It's configuration lives in `server/knexfile.js`.
+
+### Commands
+#### Initialize database tables with data:
+```bash
+cd server && npx knex migrate:latest && npx knex seed:run
+```
+
+#### Reset data:
+```bash
+cd server && npx knex migrate:down
+```
