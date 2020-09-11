@@ -9,7 +9,8 @@ const createPlayersTable = (knex) => {
   return knex.schema.createTable(PLAYERS_TABLE, (table) => {
     table.uuid('id')
       .primary();
-    table.string('name');
+    table.string('name')
+      .notNullable();
   })
 };
 
@@ -17,7 +18,8 @@ const createGamesTable = (knex) => {
   return knex.schema.createTable(GAMES_TABLE, (table) => {
     table.uuid('id')
       .primary();
-    table.string('name');
+    table.string('name')
+      .notNullable();
   })
 };
 
