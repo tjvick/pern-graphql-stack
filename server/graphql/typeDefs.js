@@ -17,11 +17,15 @@ const typeDefs = gql`
         id: ID!
         game_id: ID!
         event_time: Date
+        game: Game
+        players: [Player] 
     }
     
     type Play {
         id: ID!
+        event_id: ID!
         player_id: ID!
+        player: Player!
     }
 
     type Query {

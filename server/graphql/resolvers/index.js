@@ -9,11 +9,31 @@ const {
 
 const mainResolver = (knex) => {
   return {
+    Event: {
+      game: ({game_id}) => (
+        knex(GAMES_TABLE)
+          .where('id', game_id)
+          .first()
+      ),
+      players: ({id}) => {
+        return knex(PLAYS_TABLE)
+          .where('event_id', id)
+          .join(PLAYERS_TABLE, `${PLAYS_TABLE}.player_id`, `${PLAYERS_TABLE}.id`)
+          .select(`${PLAYERS_TABLE}.*`)
+      }
+    },
+    Play: {
+      player: ({player_id}) => {
+        return knex(PLAYERS_TABLE)
+          .where('id', player_id)
+          .first();
+      }
+    },
     Query: {
-      games: async () => knex(GAMES_TABLE),
-      players: async () => knex(PLAYERS_TABLE),
-      events: async () => knex(EVENTS_TABLE),
-      plays: async () => knex(PLAYS_TABLE)
+      games: () => knex(GAMES_TABLE),
+      players: () => knex(PLAYERS_TABLE),
+      events: () => knex(EVENTS_TABLE),
+      plays: () => knex(PLAYS_TABLE)
     }
   }
 };
