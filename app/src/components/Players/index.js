@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useMutation, useQuery} from "@apollo/client";
 import {Button, Input, Layout, Modal, Table} from "antd";
 import {ADD_PLAYER_MUTATION, PLAYERS_QUERY} from "../../queries";
+import {useHistory} from 'react-router-dom';
 
 const tableColumns = [
   {
@@ -16,6 +17,7 @@ const Players = () => {
   const [isAddPlayerModalOpen, setIsAddPlayerModalOpen] = useState(false);
   const {loading, data, refetch} = useQuery(PLAYERS_QUERY);
   const [addPlayer] = useMutation(ADD_PLAYER_MUTATION);
+  let history = useHistory();
 
   if (loading) {
     return <p>Loading...</p>;
@@ -31,7 +33,16 @@ const Players = () => {
       >
         Add Player
       </Button>
-      <Table dataSource={players} columns={tableColumns} pagination={{ pageSize: 50 }}/>
+      <Table
+        dataSource={players}
+        columns={tableColumns}
+        pagination={{ pageSize: 50 }}
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: () => {history.push(`/player/${record.id}/`)}
+          }
+        }}
+      />
       <Modal
         title="Add New Player"
         visible={isAddPlayerModalOpen}

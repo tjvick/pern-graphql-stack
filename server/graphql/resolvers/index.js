@@ -37,7 +37,8 @@ const mainResolver = (knex) => {
       games: () => knex(GAMES_TABLE),
       players: () => knex(PLAYERS_TABLE).orderBy('name'),
       events: () => knex(EVENTS_TABLE),
-      plays: () => knex(PLAYS_TABLE)
+      plays: () => knex(PLAYS_TABLE),
+      player: (obj, {id}) => knex(PLAYERS_TABLE).where('id', id).first(),
     },
     Mutation: {
       createPlayer: (obj, {name}) => {

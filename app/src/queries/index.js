@@ -8,6 +8,15 @@ export const PLAYERS_QUERY = gql`
         }
     }
 `;
+
+export const GET_PLAYER_QUERY = gql`
+    query GetPlayer($id: ID) {
+        player(id: $id) {
+            name
+        }
+    }
+`;
+
 export const ADD_PLAYER_MUTATION = gql`
     mutation AddPlayer($name: String) {
         createPlayer(name: $name) {
@@ -16,6 +25,7 @@ export const ADD_PLAYER_MUTATION = gql`
         }
     }
 `;
+
 export const GAMES_QUERY = gql`
     query {
         games {
@@ -24,6 +34,7 @@ export const GAMES_QUERY = gql`
         }
     }
 `;
+
 export const PLAY_LOG_QUERY = gql`
     query {
         events {

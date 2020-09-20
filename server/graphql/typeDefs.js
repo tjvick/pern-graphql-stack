@@ -33,6 +33,8 @@ const typeDefs = gql`
         players: [Player]
         events: [Event]
         plays: [Play]
+        
+        player(id: ID): Player
     }
     
     type Mutation {
