@@ -1,20 +1,7 @@
 import React from 'react';
-import {gql, useQuery} from "@apollo/client";
+import {useQuery} from "@apollo/client";
 import {Layout, Table} from "antd";
-
-const PLAY_LOG_QUERY = gql`
-    query {
-       events {
-           event_time
-           game {
-               name
-           }
-           players {
-               name
-           }
-       }
-    }
-`;
+import {PLAY_LOG_QUERY} from "../../queries";
 
 const tableColumns = [
   {

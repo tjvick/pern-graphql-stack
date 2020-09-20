@@ -34,6 +34,10 @@ const typeDefs = gql`
         events: [Event]
         plays: [Play]
     }
+    
+    type Mutation {
+        createPlayer(name: String): [Player]
+    }
 `;
 
 module.exports = typeDefs;

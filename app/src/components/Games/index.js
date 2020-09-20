@@ -1,15 +1,7 @@
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import {useQuery} from '@apollo/client';
 import {Layout, Table} from "antd";
-
-const GAMES_QUERY = gql`
-    query {
-        games {
-            id
-            name
-        }
-    }
-`;
+import {GAMES_QUERY} from "../../queries";
 
 const tableColumns = [
   {

@@ -1,11 +1,15 @@
 const dateResolver = require('./dateResolver');
-
+const {v4: uuid} = require("uuid");
 const {
   GAMES_TABLE,
   PLAYERS_TABLE,
   EVENTS_TABLE,
   PLAYS_TABLE
 } = require("../../db/constants");
+
+const createPlayer = () => {
+
+};
 
 const mainResolver = (knex) => {
   return {
@@ -31,9 +35,15 @@ const mainResolver = (knex) => {
     },
     Query: {
       games: () => knex(GAMES_TABLE),
-      players: () => knex(PLAYERS_TABLE),
+      players: () => knex(PLAYERS_TABLE).orderBy('name'),
       events: () => knex(EVENTS_TABLE),
       plays: () => knex(PLAYS_TABLE)
+    },
+    Mutation: {
+      createPlayer: (obj, {name}) => {
+        return knex(PLAYERS_TABLE)
+          .insert({id: uuid(), name: name}, ['id', 'name']);
+      }
     }
   }
 };
