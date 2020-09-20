@@ -13,6 +13,9 @@ export const NavigationBar = () => {
         <Menu.Item key="players">
           <Link to="/players">Players</Link>
         </Menu.Item>
+        <Menu.Item key="playlog">
+          <Link to="/playlog">Play Log</Link>
+        </Menu.Item>
       </Menu>
     </Layout.Header>
   )
