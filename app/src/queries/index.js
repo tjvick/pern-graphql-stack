@@ -9,10 +9,17 @@ export const PLAYERS_QUERY = gql`
     }
 `;
 
-export const GET_PLAYER_QUERY = gql`
-    query GetPlayer($id: ID) {
+export const GET_PLAYER_DETAILS_QUERY = gql`
+    query GetPlayerDetails($id: ID) {
         player(id: $id) {
             name
+            events {
+                id
+                event_time
+                game {
+                    name
+                }
+            }
         }
     }
 `;

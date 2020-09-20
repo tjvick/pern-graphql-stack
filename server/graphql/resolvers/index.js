@@ -26,11 +26,12 @@ const mainResolver = (knex) => {
           .select(`${PLAYERS_TABLE}.*`)
       }
     },
-    Play: {
-      player: ({player_id}) => {
-        return knex(PLAYERS_TABLE)
-          .where('id', player_id)
-          .first();
+    Player: {
+      events: ({id}) => {
+        return knex(PLAYS_TABLE)
+          .where('player_id', id)
+          .join(EVENTS_TABLE, `${PLAYS_TABLE}.event_id`, `${EVENTS_TABLE}.id`)
+          .select(`${EVENTS_TABLE}.*`)
       }
     },
     Query: {

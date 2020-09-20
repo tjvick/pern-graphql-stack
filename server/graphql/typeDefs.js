@@ -11,6 +11,7 @@ const typeDefs = gql`
     type Player {
         id: ID!
         name: String!
+        events: [Event]
     }
     
     type Event {
@@ -25,7 +26,6 @@ const typeDefs = gql`
         id: ID!
         event_id: ID!
         player_id: ID!
-        player: Player!
     }
 
     type Query {

@@ -1,16 +1,28 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
 import {useQuery} from "@apollo/client";
-import {GET_PLAYER_QUERY} from "../../queries";
-import {Typography} from "antd";
+import {GET_PLAYER_DETAILS_QUERY} from "../../queries";
+import {Layout, Table, Typography} from "antd";
 
-
+const tableColumns = [
+  {
+    title: 'Date',
+    dataIndex: 'event_time',
+    key: 'datetime',
+    render: date => (new Date(date)).toLocaleString('en-US'),
+  },
+  {
+    title: 'Game Title',
+    dataIndex: ['game', 'name'],
+    key: 'gametitle',
+  }
+];
 
 const PlayerDetails = () => {
   let { id } = useParams();
 
   const {loading, data} = useQuery(
-    GET_PLAYER_QUERY,
+    GET_PLAYER_DETAILS_QUERY,
     {
       variables: {
         id: id
@@ -25,9 +37,18 @@ const PlayerDetails = () => {
   const {player} = data;
 
   return (
-    <Typography.Title>
-      {player.name}
-    </Typography.Title>
+    <Layout.Content>
+      <Typography.Title>
+        {player.name}
+      </Typography.Title>
+      <Typography.Title level={3}>
+        Recent Plays
+      </Typography.Title>
+      <Table
+        dataSource={player.events}
+        columns={tableColumns}
+      />
+    </Layout.Content>
   );
 };
 
