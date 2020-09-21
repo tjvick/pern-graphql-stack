@@ -39,6 +39,7 @@ const typeDefs = gql`
     
     type Mutation {
         createPlayer(name: String): [Player]
+        deletePlayer(id: ID): Int
     }
 `;
 

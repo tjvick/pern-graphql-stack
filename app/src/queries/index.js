@@ -33,6 +33,12 @@ export const ADD_PLAYER_MUTATION = gql`
     }
 `;
 
+export const DELETE_PLAYER_MUTATION = gql`
+    mutation DeletePlayer($id: ID) {
+        deletePlayer(id: $id)
+    }
+`;
+
 export const GAMES_QUERY = gql`
     query {
         games {

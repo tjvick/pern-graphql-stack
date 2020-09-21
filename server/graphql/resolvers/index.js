@@ -45,8 +45,14 @@ const mainResolver = (knex) => {
       createPlayer: (obj, {name}) => {
         return knex(PLAYERS_TABLE)
           .insert({id: uuid(), name: name}, ['id', 'name']);
+      },
+      deletePlayer: (obj, {id}) => {
+        return knex(PLAYERS_TABLE)
+          .where('id', id)
+          .delete();
       }
     }
+
   }
 };
 
