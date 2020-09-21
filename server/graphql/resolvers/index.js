@@ -7,10 +7,6 @@ const {
   PLAYS_TABLE
 } = require("../../db/constants");
 
-const createPlayer = () => {
-
-};
-
 const mainResolver = (knex) => {
   return {
     Event: {
@@ -52,7 +48,6 @@ const mainResolver = (knex) => {
           .delete();
       }
     }
-
   }
 };
 
