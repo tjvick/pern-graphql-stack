@@ -98,3 +98,29 @@ npm run init-db
 ```bash
 npm run clear-db
 ```
+
+## GraphQL
+We are using [grahpql](https://graphql.org/) as the API between the front-end (React) client and back-end (express) 
+server.
+
+On the server side, we are using [express-graphql](https://github.com/graphql/express-graphql) to serve the graphQL API
+over express.  The graphql endpoint is http://localhost:4000/graphql, which shows the GraphiQL UI tool when opened in 
+the browser.  
+
+Our graphql type definitions and resolvers live in `server/graphql`.
+
+On the client side, we are using [Apollo Client](https://www.apollographql.com/docs/react/) to connect our React 
+components to a graphql client and make API queries.
+
+## Testing
+### Client-Side
+`create-react-app` uses the [jest](https://jestjs.io/) testing framework by default and provides a script to execute 
+tests.  To test the React components, we are using [React Testing Library](https://testing-library.com/docs/react-testing-library/intro).
+To mock out our graphql API, we are using Apollo Client's [MockedProvider](https://www.apollographql.com/docs/react/development-testing/testing).
+ 
+
+#### Commands
+##### Run tests
+```bash
+cd app && npm test
+``` 
