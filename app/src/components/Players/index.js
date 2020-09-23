@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useMutation, useQuery} from "@apollo/client";
 import {Button, Input, Layout, Modal, Table} from "antd";
 import {ADD_PLAYER_MUTATION, PLAYERS_QUERY} from "../../queries";
@@ -12,12 +12,16 @@ const tableColumns = [
   }
 ];
 
-const Players = () => {
+const Players = (props) => {
   const [newPlayerName, setNewPlayerName] = useState('');
   const [isAddPlayerModalOpen, setIsAddPlayerModalOpen] = useState(false);
   const {loading, data, refetch} = useQuery(PLAYERS_QUERY);
   const [addPlayer] = useMutation(ADD_PLAYER_MUTATION);
   let history = useHistory();
+
+  useEffect(() => {
+    refetch()
+  }, [props.location]);
 
   if (loading) {
     return <p>Loading...</p>;
