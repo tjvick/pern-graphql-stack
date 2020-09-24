@@ -56,7 +56,8 @@ class Repository {
 
   createPlayer(name) {
     return this.knex(PLAYERS_TABLE)
-      .insert({id: uuid(), name: name}, ['id', 'name']);
+      .returning(['id', 'name'])
+      .insert({id: uuid(), name: name});
   }
 
   async deletePlayerByID(player_id) {

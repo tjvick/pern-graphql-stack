@@ -1,4 +1,4 @@
-const {events, games, players, plays} = require("../fixtures/initial");
+const {events, games, players, plays} = require("../fixtures/testing");
 const {
   EVENTS_TABLE,
   GAMES_TABLE,

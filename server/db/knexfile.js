@@ -10,5 +10,14 @@ module.exports = {
       password: 'password',
       database: 'postgres'
     }
+  },
+  testing: {
+    client: 'sqlite3',
+    connection: ':memory:',
+    pool: {
+      min: 1,
+      max: 1,
+      idleTimeoutMillis: 360000*1000,
+    }
   }
 };
