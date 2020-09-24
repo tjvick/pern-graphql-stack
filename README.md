@@ -124,3 +124,19 @@ To mock out our graphql API, we are using Apollo Client's [MockedProvider](https
 ```bash
 cd app && npm test
 ``` 
+
+### Server-Side
+We are also using the jest framework on the server side.
+
+#### Testing Examples
+##### Repository Tests
+The db repository provides functions to use for data access (e.g. get, add, delete).  This repository has a knex (read: DB)
+dependency.  Our test double on the database side is an in-memory sqlite3 DB, which we "connect" to via knex, and seed 
+with test data (fixtures). sqlite3 is not a great stand-in for postgres, so there are some limitations here that we are living with for now
+(e.g. it doesn't return values on insert).  An alternative would be to spin up a postgres docker container.
+
+#### Commands
+##### Run tests
+```bash
+cd server && npm test
+```
